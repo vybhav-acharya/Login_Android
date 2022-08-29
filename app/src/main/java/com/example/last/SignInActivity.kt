@@ -37,13 +37,7 @@ class SignInActivity : AppCompatActivity() {
             }})
     }
 
-
-
-
      private fun signIn() {
-
-
-
         Log.i(TAG, "Comes to signin")
         val intent = mGoogleSignInClient!!.signInIntent
         startActivityForResult(intent, RC_SIGN_IN)
@@ -70,6 +64,8 @@ class SignInActivity : AppCompatActivity() {
 
                 val intent = Intent(this@SignInActivity, UserProfile::class.java).apply {
                     putExtra("Account_name",account!!.displayName)
+                    putExtra("Account_email",account!!.email)
+                   putExtra("Account_photo",account!!.photoUrl.toString())
 
                 }
                 startActivity(intent)
@@ -77,7 +73,9 @@ class SignInActivity : AppCompatActivity() {
             } catch (e: ApiException) {
                 // The ApiException status code indicates the detailed failure reason.
                 // Please refer to the GoogleSignInStatusCodes class reference for more information.
+
                 Log.e("TAG", "signInResult:failed code=" + e.statusCode)
+                onStart();
             }
         }
     }
