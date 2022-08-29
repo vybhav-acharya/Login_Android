@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat.startActivityForResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -23,15 +25,17 @@ class SignInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
-        val number = findViewById<View>(R.id.etPhone).toString().trim()
-        val countryCode = findViewById<View>(R.id.ccp).toString()
+        val a = findViewById<View>(R.id.etPhone) as TextView
+        val number=a.text.toString().trim()
+
+
 
 
         findViewById<View>(R.id.generate_otp).setOnClickListener(object :View.OnClickListener {
             override fun onClick(v: View?) {
                 Log.i(TAG, "Comes to generate")
                 val intent = Intent(this@SignInActivity, OtpActivity::class.java).apply {
-                    putExtra("Phone_number", countryCode + number)
+                    putExtra("Phone_number", number)
                 }
                 startActivity(intent)
             }
