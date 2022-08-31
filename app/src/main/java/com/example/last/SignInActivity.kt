@@ -1,103 +1,101 @@
 package com.example.last
 
+import android.R
 import android.content.ContentValues.TAG
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
-import androidx.core.app.ActivityCompat.startActivityForResult
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import com.example.last.databinding.ActivitySignInBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 
+
 class SignInActivity : AppCompatActivity() {
     private val RC_SIGN_IN = 1
 
-     var mGoogleSignInClient: GoogleSignInClient? = null
-
+    var mGoogleSignInClient: GoogleSignInClient? = null
+    private lateinit var binding: ActivitySignInBinding
+    private lateinit var countryCode: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_in)
-        val a = findViewById<View>(R.id.etPhone) as TextView
-        val number=a.text.toString().trim()
+        binding = ActivitySignInBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.ccp.onItemSelectedListener=object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                Log.i(TAG,"Came here ")
+                countryCode = parent?.getItemAtPosition(position).toString()
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                countryCode = "+91"
+            }
 
 
+        }
 
-
-        findViewById<View>(R.id.generate_otp).setOnClickListener(object :View.OnClickListener {
+        binding.generateOtp.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                Log.i(TAG, "Comes to generate")
-                val intent = Intent(this@SignInActivity, OtpActivity::class.java).apply {
-                    putExtra("Phone_number", number)
+                val number = binding.etPhone.text.toString()
+
+
+
+                val phoneNumber = this@SignInActivity.getPhoneNumber(number);
+
+
+                if (phoneNumber != null) {
+                    val intent = Intent(this@SignInActivity, OtpActivity::class.java).apply {
+                        putExtra("Phone_number", "$countryCode $phoneNumber")
+
+                    }
+                    startActivity(intent)
+
+
                 }
-                startActivity(intent)
             }
 
         })
 
 
 
-
-        val gso =
-            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build()
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
-        mGoogleSignInClient!!.signOut()
-        findViewById<View>(R.id.sign_in_button).setOnClickListener(object : View.OnClickListener{
+        binding.signInButton.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 //Your code here
-                signIn()
-            }})
-    }
-
-     private fun signIn() {
-        Log.i(TAG, "Comes to signin")
-        val intent = mGoogleSignInClient!!.signInIntent
-        startActivityForResult(intent, RC_SIGN_IN)
-    }
-     fun signOut()
-    {
-        mGoogleSignInClient!!.signOut();
-    }
-    override fun onActivityResult(
-        requestCode: Int,
-        resultCode: Int,
-        data: Intent?
-    ) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        Log.i(TAG, "Comes to activity")
-        if (requestCode == RC_SIGN_IN) {
-            Log.i(TAG, "Comes to activity request code correct")
-            val task =
-                GoogleSignIn.getSignedInAccountFromIntent(data)
-
-            try {
-                val account: GoogleSignInAccount? = task.getResult(ApiException::class.java)
-
-                val intent = Intent(this@SignInActivity, UserProfile::class.java).apply {
-                    putExtra("Account_name",account!!.displayName)
-                    putExtra("Account_email",account!!.email)
-                   putExtra("Account_photo",account!!.photoUrl.toString())
-
-                }
+//                signIn()
+                val intent:Intent=Intent(this@SignInActivity,GoogleSignInn::class.java)
                 startActivity(intent)
-
-            } catch (e: ApiException) {
-                // The ApiException status code indicates the detailed failure reason.
-                // Please refer to the GoogleSignInStatusCodes class reference for more information.
-
-                Log.e("TAG", "signInResult:failed code=" + e.statusCode)
-                onStart();
+                finish()
             }
-        }
+        })
     }
+
+
+
+
+
+
+
+         fun getPhoneNumber(phone: String): String? {
+            if (phone.isEmpty()) {
+                Toast.makeText(applicationContext, "Phone number is required!", Toast.LENGTH_LONG)
+                    .show()
+
+            }
+
+            else {
+                return if (phone.substring(0, 1) == "0") phone.substring(1) else phone
+
+            }
+            return null
+        }
+
+
+
+
 }
+
+

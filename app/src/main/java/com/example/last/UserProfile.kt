@@ -28,18 +28,20 @@ class UserProfile : AppCompatActivity() {
         val imageView=ImageView(this)
 
         val signout_btn = findViewById<View>(R.id.signout_btn)
-        val extras = intent.extras
-        person_id.text=  extras!!.getString("Account_name")
-        person_email.text=extras!!.getString("Account_email")
+        if(intent.extras!=null) {
+            val extras = intent.extras
+            person_id.text = extras!!.getString("Account_name")
+            person_email.text = extras!!.getString("Account_email")
 
 
-        Glide.with(applicationContext)
-            .load(extras!!.getString("Account_photo"))
-            .into(imageView);
+            Glide.with(applicationContext)
+                .load(extras!!.getString("Account_photo"))
+                .into(imageView);
+        }
         signout_btn.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
                 //Your code here
-                val intent= Intent(applicationContext, SignInActivity::class.java)
+                val intent:Intent=Intent(this@UserProfile,SignInActivity::class.java)
                 startActivity(intent)
 
 

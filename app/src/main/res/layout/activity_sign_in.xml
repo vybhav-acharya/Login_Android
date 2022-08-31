@@ -7,7 +7,6 @@
     tools:context=".SignInActivity">
 
 
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="85dp"
@@ -15,10 +14,11 @@
         android:contentDescription="Logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.463"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.146"
-        app:srcCompat="@drawable/small_png" />
+        app:layout_constraintVertical_bias="0.132"
+        app:srcCompat="@drawable/ic_aapt_logo" />
 
     <ImageView
         android:id="@+id/aapt_work_logo"
@@ -34,69 +34,120 @@
         tools:ignore="MissingConstraints" />
 
 
+    <!--    <com.hbb20.CountryCodePicker-->
+<!--        android:id="@+id/ccp"-->
+<!--        android:layout_width="60dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginTop="56dp"-->
+
+<!--        android:background="@drawable/border_left"-->
+<!--        android:padding="8dp"-->
+<!--        app:ccp_autoDetectCountry="true"-->
+<!--        app:ccp_showFullName="false"-->
+<!--        app:ccp_showNameCode="false"-->
+<!--        app:ccp_showPhoneCode="true"-->
+<!--        app:ccp_textSize="16sp"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/etPhone"-->
+<!--        app:layout_constraintHorizontal_chainStyle="packed"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/aapt_work_logo" />-->
+
+    <!--    <EditText-->
+<!--        android:id="@+id/etPhone"-->
+<!--        android:layout_width="230dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginStart="4dp"-->
+<!--        android:background="@drawable/border_left"-->
+<!--        android:ems="10"-->
+<!--        style="@style/TextAppearance.AppCompat.Display1"-->
+<!--        android:hint="Mobile Number"-->
+<!--        android:inputType="phone"-->
+<!--        android:maxLength="15"-->
+<!--        android:padding="15dp"-->
+<!--        android:textSize="20sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/ccp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/ccp"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/ccp"-->
+<!--        app:layout_constraintVertical_bias="0.0" />-->
+
     <Button
-        android:id="@+id/generate_otp"
+        android:id="@+id/generateOtp"
         android:layout_width="290dp"
         android:layout_height="47dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginBottom="292dp"
+        android:background="@drawable/border_for_button"
 
-        android:background="@drawable/purple_rounded"
+android:backgroundTint="@color/aapt_purple"
+
         android:text="Generate OTP"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ccp"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <com.hbb20.CountryCodePicker
-        android:id="@+id/ccp"
-        android:layout_width="83dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="56dp"
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="290dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="52dp"
 
-        android:background="@drawable/border_left"
-        android:padding="8dp"
-        app:ccp_autoDetectCountry="true"
-        app:ccp_showFullName="false"
-        app:ccp_showNameCode="false"
-        app:ccp_showPhoneCode="true"
-        app:ccp_textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/etPhone"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aapt_work_logo" />
 
-    <EditText
-        android:id="@+id/etPhone"
-        android:layout_width="225dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/border_left"
-        android:ems="10"
-        android:hint="1234567890"
-        android:inputType="phone"
-        android:maxLength="15"
-        android:padding="15dp"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/ccp"
+        android:layout_marginBottom="57dp"
+        android:background="@drawable/border_for_button"
+        app:layout_constraintBottom_toTopOf="@+id/generateOtp"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ccp"
-        app:layout_constraintTop_toTopOf="@+id/ccp" />
+        app:layout_constraintHorizontal_bias="0.553"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aapt_work_logo"
+        app:layout_constraintVertical_bias="1.0"
+        >
 
+        <Spinner
+            android:id="@+id/ccp"
+            android:layout_width="53dp"
+            android:layout_height="match_parent"
+
+            android:background="@drawable/border"
+            android:backgroundTint="@color/aapt_purple"
+            android:entries="@array/countryCodes"
+            android:theme="@style/Spinner" />
+
+        <EditText
+            android:id="@+id/etPhone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/ccp"
+            android:background="@null"
+            android:ems="10"
+            android:hint="Mobile Number"
+            android:inputType="number"
+            android:textAlignment="center" />
+
+
+<!--         -->
+
+            />
+        <!--            tools:layout_editor_absoluteX="79dp"-->
+        <!--            tools:layout_editor_absoluteY="374dp" />-->
+
+
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="90dp"
         android:layout_height="20dp"
 
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/generate_otp"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/generateOtp"
+        app:layout_constraintVertical_bias="0.275"
         app:srcCompat="@drawable/or_sign_in" />
 
     <View
@@ -108,13 +159,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-    <Button
+    <ImageButton
 
-        android:id="@+id/sign_in_button"
+        android:id="@+id/signInButton"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="70.67dp"
         android:layout_height="24dp"
-        android:layout_marginStart="120px"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="20dp"
         android:foreground="@drawable/google_logo"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -124,17 +175,39 @@
         app:layout_constraintTop_toBottomOf="@+id/view"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
+    <ImageButton
         android:id="@+id/button"
         android:layout_width="82.13dp"
         android:layout_height="16dp"
+        android:layout_marginStart="55dp"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_marginEnd="108dp"
-        android:background="@color/white"
-        android:foreground="@drawable/truecaller"
-        app:layout_constraintBottom_toBottomOf="@+id/sign_in_button"
+        android:foreground="@drawable/ic_truecaller"
+        app:layout_constraintBottom_toBottomOf="@+id/signInButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/sign_in_button"
+        app:layout_constraintStart_toEndOf="@+id/signInButton"
+        app:layout_constraintTop_toTopOf="@+id/signInButton"
         app:layout_constraintVertical_bias="0.0" />
+
+<!--    <Spinner-->
+<!--        android:id="@+id/ccp"-->
+
+<!--        android:layout_width="67dp"-->
+<!--        android:layout_height="47dp"-->
+<!--        android:layout_marginTop="56dp"-->
+<!--        android:background="@drawable/border_left"-->
+
+<!--        android:entries="@array/countryCodes"-->
+<!--        android:padding="8dp"-->
+<!--        android:textColor="@color/white"-->
+
+<!--        app:layout_constraintEnd_toStartOf="@+id/etPhone"-->
+
+
+<!--        app:layout_constraintHorizontal_chainStyle="packed"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/aapt_work_logo"-->
+<!--        android:textSize="12sp" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

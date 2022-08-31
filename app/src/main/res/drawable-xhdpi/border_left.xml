@@ -3,12 +3,10 @@
 
     <stroke
         android:width="1dp"
-        android:color="@color/black" />
+        android:color="@color/aapt_grey_200" />
 
     <corners
-        android:topLeftRadius="16dp"
-        android:topRightRadius="16dp"
-        android:bottomRightRadius="16dp"
-        android:bottomLeftRadius="16dp"/>
+            android:radius="16dp"/>
+<!--       />-->
 
 </shape>

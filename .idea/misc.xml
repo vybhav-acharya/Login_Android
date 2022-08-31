@@ -3,8 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Last/app/src/main/res/layout/activity_sign_in.xml" value="0.1" />
-        <entry key="..\:/Last/app/src/main/res/layout/activity_user_profile.xml" value="0.264" />
+        <entry key="..\:/Last/app/src/main/res/drawable-xhdpi/border.xml" value="0.1" />
+        <entry key="..\:/Last/app/src/main/res/drawable-xhdpi/border_left.xml" value="0.164" />
+        <entry key="..\:/Last/app/src/main/res/drawable-xhdpi/ic_truecaller.xml" value="0.111" />
+        <entry key="..\:/Last/app/src/main/res/drawable/border_for_button.xml" value="0.1" />
+        <entry key="..\:/Last/app/src/main/res/drawable/ic_aapt_logo.xml" value="0.1795" />
+        <entry key="..\:/Last/app/src/main/res/drawable/ic_appt_work_svg.xml" value="0.216" />
+        <entry key="..\:/Last/app/src/main/res/drawable/ic_back_button.xml" value="0.1695" />
+        <entry key="..\:/Last/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.1" />
+        <entry key="..\:/Last/app/src/main/res/drawable/ic_phoneedt_bg.xml" value="0.1695" />
+        <entry key="..\:/Last/app/src/main/res/drawable/ic_spinner_backtst.xml" value="0.1695" />
+        <entry key="..\:/Last/app/src/main/res/layout/activity_otp.xml" value="0.140625" />
+        <entry key="..\:/Last/app/src/main/res/layout/activity_otp_part2.xml" value="0.264" />
+        <entry key="..\:/Last/app/src/main/res/layout/activity_sign_in.xml" value="0.4" />
+        <entry key="..\:/Last/app/src/main/res/layout/activity_user_profile.xml" value="0.1" />
+        <entry key="..\:/Last/app/src/main/res/layout/border.xml" value="0.1546875" />
+        <entry key="..\:/Last/app/src/main/res/layout/nav_header.xml" value="0.1" />
+        <entry key="..\:/Last/app/src/main/res/menu/nav_drawer_menu.xml" value="0.1" />
       </map>
     </option>
   </component>
